@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>JFK Crosswind Chaos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="wind.png"/>
+
+
+<style>
+  *{box-sizing: border-box;}
+  html, body{height:100%; margin:0; padding:0;}
+  body{font-family: sans-serif; font-size:12px; letter-spacing:.02em;}
+ 
+ 
+ 
+  #windMap{display:none;}
+ 
+ .main{max-width:1280px; margin:0 auto;}
+
+  
+  canvas{position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);}
+  img{max-width:500px;  display:inline-block;}
+  #content p{padding:10px; display:inline-block;}
+  
+  #content p{margin:0;}
+  h1{font-size:inherit; margin:20px 0 20px 0;}
+  #main > section{margin:7vh 0;}
+  hr{margin:5vh 0; border-top:1px solid #ccc;}
+  #content p.more{display:none; }
+  #content section {margin:5px 0; display:inline-block;}
+  #content section:hover p.more{display:inline-block;}
+  #content section.bad{border:1px solid red;}
+  #content section.mbad{border:1px solid orange;}
+  p.bad{background:red; color:white;}
+  p.mbad{background:orange; color:white;}
+  #content section.bad p.more, #content section.mbad p.more{display:inline-block;}
+  #top{background:#ffffcc; padding:10px; margin:20px 0; text-align: center; font-size:12px;}
+  a{text-decoration:none; color:navy;}
+  a:hover{color:rgba(0,0,0,1);}
+  .grid{display:flex;}
+  .grid section{flex:1;}
+  footer{ padding:3vh; background:#eee; width:100%; position:; bottom:0; left:0; margin-top:5vh;}
+  
+  /*footer p{max-width:700px;}*/
+  footer .grid > div{width:50%; padding:10px;}
+footer .grid > div:last-child p{text-align:right;position:relative;right:5vw; top:50%;transform:translateY(-50%);}
+  p{line-height:16px;}
+  .tw{display:flex; justify-content: space-between;}
+  .border{width:10vw; border-bottom:1px solid #ccc;margin:5vh 0;}
+  twitter-widget{margin:10px; font-size:10px; letter-spacing:normal;}
+p.alert{
+	display: inline-block;
+    border-top: 1px dotted #eee;
+    padding-top: 10px;}
+    @media only screen and (max-width : 1280px) {
+    	.main{padding:20px;}
+      #top{margin-top:0;}
+    }
+@media only screen and (max-width : 1000px) {
+.grid{ flex-direction: column;}
+.main{padding:20px;}
+footer .grid > div{width:auto;}
+footer .grid > div:last-child p{text-align:left;position:static; margin-top:10vh;}
+img{max-width:100%;}
+twitter-widget{margin:0;}
+footer{padding:0;}
+}
+
+</style>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-32951228-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-32951228-6');
+</script>
+</head>
+  
+<body>
+
+<div class="main">
+
+<p id="top">Due to <a href="https://www.panynj.gov/press-room/press-item.cfm?headLine_id=3100" target="_blank">a runway closure</a> until next winter 2020, when there's a strong NW or SE wind at JFK, major traffic management problems ensue.</p>
+
+<div class="grid">
+<section>
+<h1 style="">Avoid JFK on:</h1>
+<div id="content">
+</div>
+<div id="key">
+
+</div>
+</section>
+
+<section>
+<h1>Why</h1>
+	<p>13L / 31R is closed until winter 2020, and historically has handled <a href="https://news.delta.com/runway-new-york-jfk-will-close-expansion-repaving-through-november-2019" target="_blank">1/3 of all arrivals into JFK</a>.</p>
+	<p><img src="jfkmap.jpg" /></p>
+	<p>When the wind results in a <strong>~30 knot crosswind</strong> or greater on 4L/22R and 4R/22L, JFK is forced to use only a single runway (13R/31L) for all arrivals and departures.</p>
+	
+</section>
+</div>
+
+<hr>
+<section>
+<h1>What happens when JFK uses a single runway?</h1>
+
+<div class="grid">
+
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">Now more than three dozen aircraft waiting to take off at <a href="https://twitter.com/JFKairport?ref_src=twsrc%5Etfw">@JFKairport</a>, with the line taking up all of runway 22L, the taxiway to 22R and then more than half of 22R itself 😧 <a href="https://t.co/0pisnCVaV1">pic.twitter.com/0pisnCVaV1</a></p>&mdash; Jason Rabinowitz (@AirlineFlyer) <a href="https://twitter.com/AirlineFlyer/status/1117951512188194817?ref_src=twsrc%5Etfw">April 16, 2019</a></blockquote>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">With strong winds from the west, <a href="https://twitter.com/JFKairport?ref_src=twsrc%5Etfw">@JFKairport</a> is down to single runway ops, using 31L only.<br>If this keeps up, the evening departure bank will be....extremely bad. <a href="https://t.co/dhVYjOR47g">pic.twitter.com/dhVYjOR47g</a></p>&mdash; Jason Rabinowitz (@AirlineFlyer) <a href="https://twitter.com/AirlineFlyer/status/1117871563183775744?ref_src=twsrc%5Etfw">April 15, 2019</a></blockquote>
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">All of these planes are waiting to take off from a very windy, single runway <a href="https://twitter.com/JFKairport?ref_src=twsrc%5Etfw">@JFKairport</a> <a href="https://t.co/BHaORdP0k8">pic.twitter.com/BHaORdP0k8</a></p>&mdash; Jason Rabinowitz (@AirlineFlyer) <a href="https://twitter.com/AirlineFlyer/status/1117909440219369473?ref_src=twsrc%5Etfw">April 15, 2019</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">We have a domestic diversion due to the single runway operation at JFK. JBU424&#39;s headed to SWF <a href="https://t.co/0as13CIGLh">pic.twitter.com/0as13CIGLh</a></p>&mdash; Ethan Klapper (@ethanklapper) <a href="https://twitter.com/ethanklapper/status/1117939213318676480?ref_src=twsrc%5Etfw">April 15, 2019</a></blockquote>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Due to RWY-TAXI/CONSTRUCTION AND WEATHER/WIND traffic mgmt prgrm causing some arriving flight delays averaging 5 hours and 21 minutes. <a href="https://twitter.com/hashtag/JFK?src=hash&amp;ref_src=twsrc%5Etfw">#JFK</a></p>&mdash; JFK Flight Delays (@FlyFAA_JFK) <a href="https://twitter.com/FlyFAA_JFK/status/1117879989658013696?ref_src=twsrc%5Etfw">April 15, 2019</a></blockquote>
+
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+</section>
+
+</div>
+
+<footer>
+<div class="main grid">
+
+<div>
+<h1>How is this calculated?</h1>
+	<p>Weather forecast data comes from <a href="http://darksky.net" target="_blank">Dark Sky</a> and provides 7 days of forecasted wind gusts and direction.</p>
+	
+	<p>Runways 22/4 are oriented 220&#176; and 40&#176; from magnetic north, so for all winds not exactly at 220&#176; or 40&#176;, there is <em>some</em> component that represents a crosswind.</p>
+	
+	<p>Winds at 310&#176; and 130&#176; represent perfect crosswinds, so their gust strength equals crosswind strength. For all other windbearings, taking the cosine of the deviation from the perfect crosswind and multipling by the magnitude of the wind gust gives the crosswind component.</p>
+
+	<p>Note that wind direction (true) is converted to magnetic before calculating cross-wind relative to runways (magnetic).</p>
+
+</div>
+
+<div>
+	<p><a href="mailto:eric@unfoundedlabs.com" target="blank">Questions, comments?</a>
+	<br><br><br>
+	<a href="http://unfoundedlabs.com" target="_blank">unfoundedlabs.com</a>
+	</p>
+</div>
+
+</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+<script src="date.js" type="text/javascript"></script>
+<script src="site.js" type="text/javascript"></script>
+
+</body>
+
+
+</html>
